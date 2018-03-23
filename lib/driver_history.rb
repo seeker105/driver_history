@@ -67,7 +67,6 @@ class DriverHistory
     end
   end
 
-
   def addTrip(dataArr)
     driver = @drivers[dataArr[1]]
     hours_dif = getTimeDif(dataArr[2], dataArr[3])
@@ -96,10 +95,11 @@ class DriverHistory
 end
 
 
-dh = DriverHistory.new
-
-if ARGV[0] && FileTest.exist?(ARGV[0])
-  dh.processFile
-else
-  puts "There was a problem loading the file. Try again."
+if __FILE__ == $0
+  if ARGV[0] && FileTest.exist?(ARGV[0])
+    dh = DriverHistory.new
+    dh.processFile
+  else
+    puts "There was a problem loading the file. Try again."
+  end
 end
