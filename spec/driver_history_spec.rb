@@ -1,18 +1,19 @@
-require './lib/main'
+require './lib/driver_history'
 
-RSpec.describe "Main:" do
+RSpec.describe "DriverHistory:" do
   context 'basic functions' do
     before(:each) do
       @dh = DriverHistory.new
     end
 
-    it "can extract hours from HH:MM" do
-      hours = @dh.extractHours("07:43")
-      expect(hours).to eq(7)
+    it "can get a difference between two different HH:MM time strings" do
+      t1 = "12:30"
+      t2 = "13:15"
+      dif = @dh.getTimeDif(t1, t2)
 
-      hours = @dh.extractHours("14:35")
-      expect(hours).to eq(14)
-      #Note: because we are using this value 
+      expect(dif).to eq(0.75)
     end
+
+
   end
 end

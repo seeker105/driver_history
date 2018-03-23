@@ -18,12 +18,11 @@ class DriverHistory
 
   def initialize
     @drivers = {}
-    if ARGV[0] && FileTest.exist?(ARGV[0])
-      readFile
-      generateReport
-    else
-      puts "The was a problem reading the file. Try again."
-    end
+  end
+
+  def processFile
+    readFile
+    generateReport
   end
 
   # def readFile
@@ -71,20 +70,14 @@ class DriverHistory
 
   def addTrip(dataArr)
     driver = @drivers[dataArr[1]]
-    hours = extractHours(dataArr[3]) - extractHours(dataArr[2])
-    mins = extractMinutes(dataArr[3]) - extractMinutes(dataArr[2])
-    hours += mins/60.0
-    driver.update(hours, dataArr[4].to_f)
+    hours_dif = getTimeDif(dataArr[2], dataArr[3])
+    driver.update(hours_dif, dataArr[4].to_f)
   end
 
-  def extractHours(timeString)
-    hours = timeString.slice(0,2)
-    return hours.to_i
-  end
-
-  def extractMinutes(timeString)
-    minutes = timeString.slice(3,2)
-    return minutes.to_i
+  def getTimeDif(earlier, later)
+    earlier = Time.new(2000,1,1,earlier.slice(0,2).to_i, earlier.slice(3,2).to_i)
+    later = Time.new(2000,1,1,later.slice(0,2).to_i, later.slice(3,2).to_i)
+    return (later - earlier)/3600.0
   end
 
   def generateReport
@@ -104,3 +97,9 @@ end
 
 
 dh = DriverHistory.new
+
+if ARGV[0] && FileTest.exist?(ARGV[0])
+  dh.processFile
+else
+  puts "There was a problem loading the file. Try again."
+end
