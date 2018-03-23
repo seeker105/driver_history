@@ -1,6 +1,6 @@
 require './lib/driver'
 
-RSpec.describe "Driver:" do
+RSpec.describe Driver, "Driver:" do
   context 'during initialization it' do
     it "Can create a new Driver with a given name" do
       d = Driver.new("Fred")

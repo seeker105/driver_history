@@ -1,5 +1,8 @@
 class Driver
 
+  # Input: (String) Driver's name
+  #
+  # Requires the Driver's name as input
   def initialize(name)
     @name = name
     @totalMiles = 0.0
@@ -7,25 +10,34 @@ class Driver
     @avgSpeed = 0.0
   end
 
+  # Returns: (Float)
+  #
+  # The Driver's total miles driven
   def getTotalMiles
     @totalMiles
   end
 
+  # Input (Float, Float)
+  #
+  # Accepts hours driven on a Trip and distance of that Trip. Adds the hours and
+  # miles to the Driver's totals. Recalculates their average speed based on the
+  # data
   def update(hours, miles)
     @totalTime += hours
     @totalMiles += miles
-    # puts "The avg speed is: #{@totalTime} + #"
     @avgSpeed = @totalMiles/@totalTime
-    # puts @totalTime
-    # puts @totalMiles
-    # puts @avgSpeed
-    # puts (39.1/0.8333333333).round
   end
 
+  # Returns: (Float)
+  #
+  # The Driver's average Speed
   def getAvgSpeed
     @avgSpeed
   end
 
+  # Returns: (String)
+  #
+  # The Driver's name
   def getName
     @name
   end
