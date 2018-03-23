@@ -1,6 +1,6 @@
 require "./lib/file_reader"
 
-RSpec.describe FileReader, "FileReader" do
+RSpec.describe FileReader, "FileReader:" do
   before(:all) do
     @fakeName = "TestObj"
 
@@ -22,7 +22,6 @@ RSpec.describe FileReader, "FileReader" do
   context "when reading file" do
     it "returns an array of the file lines" do
 
-      @fakeName = "TestObj"
       allow(File).to receive(:open).with(@fakeName, "r").and_return(TestObj.new)
 
       reader = FileReader.new
