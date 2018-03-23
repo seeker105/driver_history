@@ -56,7 +56,7 @@ RSpec.describe DriverHistory, "DriverHistory:" do
     it "outputs expected data to stdout" do
       allow(File).to receive(:open).with(@fakeName, "r").and_return(TestObj.new)
 
-      expect(@dh.processFile(@fakeName)).to eq("Dan: 125 miles 8 mph\nFred: 8 miles 2 mph\nBob: 0 miles")
+      expect(@dh.processFile(@fakeName)).to eq("Dan: 125 miles @ 8 mph\nFred: 8 miles @ 2 mph\nBob: 0 miles")
     end
   end
 end

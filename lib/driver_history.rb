@@ -81,7 +81,7 @@ class DriverHistory
     sortedDrivers.each do |name, driver|
       reportLine = "#{name}: #{(driver.getTotalMiles).round} miles"
       if driver.getAvgSpeed > 0
-        reportLine += " #{(driver.getAvgSpeed).round} mph\n"
+        reportLine += " @ #{(driver.getAvgSpeed).round} mph\n"
       end
       report += reportLine
     end
